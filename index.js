@@ -95,19 +95,22 @@ function EventDetails() {
     return p;
   }
 
-
   const section = document.createElement("section");
   section.className = "event";
 
   const h3 = document.createElement("h3");
-  h3.textContent = `${selectedEvent.name} #${selectedEvent.id}`;
+  h3.textContent = `${selectedEvent.name} (#${selectedEvent.id})`;
 
-  const figure = document.createElement("figure");
+  const dateP = document.createElement("p");
+  dateP.textContent = `Date: ${selectedEvent.date}`;
 
-  const p = document.createElement("p");
-  p.textContent = selectedEvent.description;
+  const locationP = document.createElement("p");
+  locationP.textContent = `Location: ${selectedEvent.location}`;
 
-  section.append(h3, p);
+  const descP = document.createElement("p");
+  descP.textContent = `Description: ${selectedEvent.description}`;
+
+  section.append(h3, dateP, locationP, descP);
   return section;
 }
 

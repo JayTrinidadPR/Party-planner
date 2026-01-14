@@ -1,25 +1,25 @@
-/* =====================================================
-   Global Reset & Theme
-===================================================== */
-* {
-  box-sizing: border-box;
-}
 
-:root {
+
+/* ---------- Reset / Base ---------- */
+* { box-sizing: border-box; }
+
+:root{
   --bg: #f4f6f8;
   --card: #ffffff;
   --text: #1f2933;
   --muted: #6b7280;
   --border: #e5e7eb;
-  --primary: #2563eb;
-  --primary-dark: #1e40af;
-  --accent: #93c5fd;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --blue: #2563eb;        /* selected item */
+  --blue-dark: #1e40af;
+  --blue-soft: rgba(37,99,235,0.12);
+
+  --shadow: 0 10px 30px rgba(0,0,0,0.08);
   --radius: 14px;
   --radius-sm: 10px;
 }
 
-body {
+body{
   margin: 0;
   background: var(--bg);
   color: var(--text);
@@ -28,31 +28,27 @@ body {
   line-height: 1.5;
 }
 
-/* =====================================================
-   App Shell
-===================================================== */
-#app {
-  max-width: 980px;
+/* ---------- App Shell ---------- */
+#app{
+  max-width: 1020px;
   margin: 3rem auto;
   padding: 0 1rem;
 }
 
-#app > h1 {
+#app > h1{
   margin: 0 0 1.25rem;
-  font-size: 2.1rem;
+  font-size: 2.15rem;
   letter-spacing: -0.02em;
 }
 
-/* =====================================================
-   Layout
-===================================================== */
-main {
+/* ---------- Layout ---------- */
+main{
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr 1.25fr;
   gap: 1.25rem;
 }
 
-main > section {
+main > section{
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -60,27 +56,26 @@ main > section {
   padding: 1.25rem;
 }
 
-h2 {
+h2{
   margin: 0 0 1rem;
   font-size: 1.15rem;
+  color: #111827;
 }
 
 /* =====================================================
-   Event List (Left)
+   Left: Event List
 ===================================================== */
-.lineup {
+.lineup{
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
-.lineup li {
-  margin: 0;
-}
+.lineup li{ margin: 0; }
 
-.lineup a {
+.lineup a{
   position: relative;
   display: block;
   padding: 0.85rem 0.95rem;
@@ -90,100 +85,107 @@ h2 {
   color: var(--text);
   font-weight: 600;
   text-decoration: none;
-  transition: box-shadow 0.2s ease, transform 0.08s ease;
+  transition: transform 0.08s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
 }
 
-.lineup a:hover {
+.lineup a:hover{
   transform: translateY(-1px);
+  background: #f3f4f6;
+  border-color: #d1d5db;
 }
 
-/* =====================================================
-   Selected Event Highlight (Solid Blue)
-===================================================== */
-.lineup a.active {
-  background: var(--primary);
+/* Selected item stays solid blue */
+.lineup a.active{
+  background: var(--blue);
   color: #ffffff;
-  border-color: var(--primary-dark);
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+  border-color: var(--blue-dark);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
 }
 
-.lineup a.active:hover {
-  background: var(--primary);
+.lineup a.active:hover{
+  background: var(--blue);
   color: #ffffff;
 }
 
-/* Left accent bar */
-.lineup a.active::before {
+/* Accent bar */
+.lineup a.active::before{
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 4px;
-  background: var(--accent);
+  background: #93c5fd;
   border-radius: 4px 0 0 4px;
 }
 
 /* =====================================================
-   Event Details (Right)
+   Right: Event Details
 ===================================================== */
-.event {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.event h3 {
-  margin: 0;
-  font-size: 1.35rem;
-  letter-spacing: -0.01em;
-}
-
-.event p {
-  margin: 0;
-  padding: 0.9rem;
-  background: #f9fafb;
-  border: 1px dashed #d1d5db;
-  border-radius: var(--radius-sm);
-  color: var(--muted);
-}
-
-/* Empty state message */
-#selected p {
-  margin: 0;
-  padding: 0.9rem;
-  background: #f9fafb;
-  border: 1px dashed #d1d5db;
-  border-radius: var(--radius-sm);
-  color: var(--muted);
-}
-
-/* Subtle emphasis on details panel */
-#selected {
+#selected{
   position: relative;
 }
 
-#selected::before {
+#selected::before{
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
   border-radius: var(--radius);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12) inset;
+  box-shadow: 0 0 0 2px var(--blue-soft) inset;
+}
+
+/* Details container from your JS: section.event */
+.event{
+  display: grid;
+  gap: 0.9rem;
+}
+
+.event h3{
+  margin: 0;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+}
+
+/* If your JS prints several <p> tags for Date/Location/Description,
+   this styling will make them look like tidy “info rows” */
+.event p{
+  margin: 0;
+  padding: 0.85rem 0.9rem;
+  background: #f9fafb;
+  border: 1px solid #eef2f7;
+  border-radius: var(--radius-sm);
+  color: #111827;
+}
+
+/* Make label-like prefix lines feel structured if you use "Date: ..." text */
+.event p strong{
+  color: #111827;
+}
+
+/* Empty state message (“Please select…”) */
+#selected p{
+  margin: 0;
+  padding: 0.95rem;
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
 }
 
 /* =====================================================
    Responsive
 ===================================================== */
-@media (max-width: 860px) {
-  main {
+@media (max-width: 900px){
+  main{
     grid-template-columns: 1fr;
   }
 
-  #app {
+  #app{
     margin: 2rem auto;
   }
 
-  #app > h1 {
-    font-size: 1.8rem;
+  #app > h1{
+    font-size: 1.85rem;
   }
 }
