@@ -1,0 +1,189 @@
+/* =====================================================
+   Global Reset & Theme
+===================================================== */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #1f2933;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --accent: #93c5fd;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+}
+
+/* =====================================================
+   App Shell
+===================================================== */
+#app {
+  max-width: 980px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+#app > h1 {
+  margin: 0 0 1.25rem;
+  font-size: 2.1rem;
+  letter-spacing: -0.02em;
+}
+
+/* =====================================================
+   Layout
+===================================================== */
+main {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1.25rem;
+}
+
+main > section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+}
+
+/* =====================================================
+   Event List (Left)
+===================================================== */
+.lineup {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.lineup li {
+  margin: 0;
+}
+
+.lineup a {
+  position: relative;
+  display: block;
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #fafafa;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.08s ease;
+}
+
+.lineup a:hover {
+  transform: translateY(-1px);
+}
+
+/* =====================================================
+   Selected Event Highlight (Solid Blue)
+===================================================== */
+.lineup a.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary-dark);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+}
+
+.lineup a.active:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* Left accent bar */
+.lineup a.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--accent);
+  border-radius: 4px 0 0 4px;
+}
+
+/* =====================================================
+   Event Details (Right)
+===================================================== */
+.event {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.event h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+}
+
+.event p {
+  margin: 0;
+  padding: 0.9rem;
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+}
+
+/* Empty state message */
+#selected p {
+  margin: 0;
+  padding: 0.9rem;
+  background: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+}
+
+/* Subtle emphasis on details panel */
+#selected {
+  position: relative;
+}
+
+#selected::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12) inset;
+}
+
+/* =====================================================
+   Responsive
+===================================================== */
+@media (max-width: 860px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  #app {
+    margin: 2rem auto;
+  }
+
+  #app > h1 {
+    font-size: 1.8rem;
+  }
+}
